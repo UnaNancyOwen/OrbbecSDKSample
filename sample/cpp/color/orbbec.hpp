@@ -1,0 +1,65 @@
+#ifndef __ORBBEC__
+#define __ORBBEC__
+
+#include <libobsensor/ObSensor.hpp>
+#include <opencv2/opencv.hpp>
+
+class orbbec
+{
+private:
+    // Orbbec
+    uint32_t device_index = 0;
+    ob::Context context;
+    std::shared_ptr<ob::Pipeline> pipeline = nullptr;
+    std::shared_ptr<ob::Device > device = nullptr;
+    std::shared_ptr<ob::Config> config = nullptr;
+    std::shared_ptr<ob::FrameSet> frameset = nullptr;
+
+    // Color
+    std::shared_ptr<ob::VideoStreamProfile> color_stream_profile = nullptr;
+    std::shared_ptr<ob::ColorFrame> color_frame = nullptr;
+    cv::Mat color;
+
+public:
+    // Constructor
+    orbbec();
+
+    // Destructor
+    ~orbbec();
+
+    // Run
+    void run();
+
+    // Update
+    void update();
+
+    // Draw
+    void draw();
+
+    // Show
+    void show();
+
+private:
+    // Initialize
+    void initialize();
+
+    // Initialize Sensor
+    void initialize_sensor();
+
+    // Finalize
+    void finalize();
+
+    // Update Frame
+    void update_frame();
+
+    // Update Color
+    void update_color();
+
+    // Draw Color
+    void draw_color();
+
+    // Show Color
+    void show_color();
+};
+
+#endif // __ORBBEC__
