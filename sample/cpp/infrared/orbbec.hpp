@@ -9,6 +9,8 @@ class orbbec
 private:
     // Orbbec
     uint32_t device_index = 0;
+    std::string address = "192.168.1.10";
+    uint16_t port = 8090;
     ob::Context context;
     std::shared_ptr<ob::Pipeline> pipeline = nullptr;
     std::shared_ptr<ob::Device > device = nullptr;

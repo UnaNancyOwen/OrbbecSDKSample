@@ -27,14 +27,20 @@ void orbbec::initialize()
 // Initialize Sensor
 inline void orbbec::initialize_sensor()
 {
-    // Get Connected Devices
-    const std::shared_ptr<ob::DeviceList> device_list = context.queryDeviceList();
-    if( device_list->deviceCount() == 0 ){
-        throw std::runtime_error( "[error] failed to found devices!" );
-    }
+    if( device_index != -1 ){
+        // Get Connected Devices
+        const std::shared_ptr<ob::DeviceList> device_list = context.queryDeviceList();
+        if( device_list->deviceCount() == 0 ){
+            throw std::runtime_error( "[error] failed to found devices!" );
+        }
 
-    // Connect Default Device by Device Index
-    device = device_list->getDevice( device_index );
+        // Connect Device by Device Index (USB)
+        device = device_list->getDevice( device_index );
+    }
+    else{
+        // Connect Deveice by IP Address and Port (Ethernet)
+        device = context.createNetDevice( address.c_str(), port );
+    }
 
     // Create Pipeline
     pipeline = std::make_shared<ob::Pipeline>( device );
