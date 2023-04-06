@@ -48,7 +48,7 @@ inline void orbbec::initialize_sensor()
     // Get Stream Profile
     const std::shared_ptr<ob::StreamProfileList> stream_profile_list = pipeline->getStreamProfileList( OBSensorType::OB_SENSOR_DEPTH );
     try{
-        depth_stream_profile = stream_profile_list->getVideoStreamProfile( 1280, 720, OBFormat::OB_FORMAT_Y16, 30 );
+        depth_stream_profile = stream_profile_list->getVideoStreamProfile( 320, 288, OBFormat::OB_FORMAT_Y16, 30 );
     }
     catch( ob::Error& e ){
         depth_stream_profile = std::const_pointer_cast<ob::StreamProfile>( stream_profile_list->getProfile( 0 ) )->as<ob::VideoStreamProfile>(); // default

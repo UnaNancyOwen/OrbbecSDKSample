@@ -48,7 +48,7 @@ inline void orbbec::initialize_sensor()
     // Get Stream Profile
     const std::shared_ptr<ob::StreamProfileList> infrared_stream_profile_list = pipeline->getStreamProfileList( OBSensorType::OB_SENSOR_IR );
     try{
-        infrared_stream_profile = infrared_stream_profile_list->getVideoStreamProfile( 1280, 720, OBFormat::OB_FORMAT_Y16, 30 );
+        infrared_stream_profile = infrared_stream_profile_list->getVideoStreamProfile( 320, 288, OBFormat::OB_FORMAT_Y16, 30 );
     }
     catch( ob::Error& e ){
         infrared_stream_profile = std::const_pointer_cast<ob::StreamProfile>( infrared_stream_profile_list->getProfile( 0 ) )->as<ob::VideoStreamProfile>(); // default
