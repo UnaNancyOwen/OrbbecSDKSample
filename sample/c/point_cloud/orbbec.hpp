@@ -67,9 +67,6 @@ private:
     // Update Frame
     void update_frame();
 
-    // Update Depth
-    void update_depth();
-
     // Update Point Cloud
     void update_pointclod();
 

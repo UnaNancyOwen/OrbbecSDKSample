@@ -31,7 +31,7 @@ private:
     cv::Mat depth;
     std::tuple<double, double> depth_range = std::make_tuple<double, double>( 0.0, 0.0 );
 
-    // Playback
+    // Player
     std::string bag_file = "../data.bag";
     ob_playback* player = nullptr;
     std::mutex frame_mutex;

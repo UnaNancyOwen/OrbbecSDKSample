@@ -126,7 +126,7 @@ void orbbec::initialize_recorder()
 // Finalize
 void orbbec::finalize()
 {
-    // Stop Record
+    // Stop Recorder
     if( recorder != nullptr ){
         ob_recorder_stop( recorder, &error );
         CHECK_ERROR( error );

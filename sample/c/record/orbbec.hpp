@@ -29,7 +29,7 @@ private:
     cv::Mat depth;
     std::tuple<double, double> depth_range = std::make_tuple<double, double>( 0.0, 0.0 );
 
-    // Record
+    // Recorder
     std::string bag_file = "data.bag";
     ob_recorder* recorder = nullptr;
 
@@ -59,7 +59,7 @@ private:
     // Initialize Sensor
     void initialize_sensor();
 
-    // Initialize Record
+    // Initialize Recorder
     void initialize_recorder();
 
     // Finalize

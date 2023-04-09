@@ -23,8 +23,8 @@ void orbbec::initialize()
     // Initialize Sensor
     initialize_sensor();
 
-    // Initialize Record
-    initialize_record();
+    // Initialize Recorder
+    initialize_recorder();
 }
 
 // Initialize Sensor
@@ -79,19 +79,19 @@ inline void orbbec::initialize_sensor()
     pipeline->start( config );
 }
 
-// Initialize Record
-void orbbec::initialize_record()
+// Initialize Recorder
+void orbbec::initialize_recorder()
 {
     // Start Record
-    record = std::make_shared<ob::Recorder>( pipeline->getDevice() );
-    record->start( bag_file.c_str() );
+    recorder = std::make_shared<ob::Recorder>( pipeline->getDevice() );
+    recorder->start( bag_file.c_str() );
 }
 
 // Finalize
 void orbbec::finalize()
 {
     // Stop Record
-    record->stop();
+    recorder->stop();
 
     // Stop Pipeline
     pipeline->stop();
@@ -173,7 +173,8 @@ void orbbec::write_frame()
         return;
     }
 
-    record->write( frameset );
+    // Write Frame
+    recorder->write( frameset );
 }
 
 // Draw

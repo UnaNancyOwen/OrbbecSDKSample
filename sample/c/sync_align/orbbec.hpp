@@ -61,11 +61,11 @@ private:
     // Update Frame
     void update_frame();
 
-    // Update Depth
-    void update_depth();
-
     // Update Color
     void update_color();
+
+    // Update Depth
+    void update_depth();
 
     // Draw Color
     void draw_color();

@@ -183,7 +183,7 @@ void orbbec::initialize_player()
 // Finalize
 void orbbec::finalize()
 {
-    // Stop Playback
+    // Stop Player
     if( player != nullptr ){
         ob_playback_stop( player, &error );
         CHECK_ERROR( error );

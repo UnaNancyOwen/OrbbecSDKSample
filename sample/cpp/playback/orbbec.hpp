@@ -28,9 +28,9 @@ private:
     cv::Mat depth;
     std::tuple<double, double> depth_range = std::make_tuple<double, double>( 0.0, 0.0 );
 
-    // Playback
+    // Player
     std::string bag_file = "../data.bag";
-    std::shared_ptr<ob::Playback> playback = nullptr;
+    std::shared_ptr<ob::Playback> player = nullptr;
     bool is_run = true;
 
 public:
@@ -59,8 +59,8 @@ private:
     // Initialize Sensor
     void initialize_sensor();
 
-    // Initialize Playback
-    void initialize_playback();
+    // Initialize Player
+    void initialize_player();
 
     // Finalize
     void finalize();

@@ -25,8 +25,8 @@ void orbbec::initialize()
         initialize_sensor();
     }
     else{
-        // Initialize Playback
-        initialize_playback();
+        // Initialize Player
+        initialize_player();
     }
 }
 
@@ -82,17 +82,17 @@ inline void orbbec::initialize_sensor()
     pipeline->start( config );
 }
 
-// Initialize Playback
-void orbbec::initialize_playback()
+// Initialize Player
+void orbbec::initialize_player()
 {
     // Create Pipeline
     pipeline = std::make_shared<ob::Pipeline>( bag_file.c_str() );
 
-    // Create Playback
-    playback = pipeline->getPlayback();
+    // Create Player
+    player = pipeline->getPlayback();
 
-    // Set Playback State Callback
-    playback->setPlaybackStateCallback(
+    // Set Player State Callback
+    player->setPlaybackStateCallback(
         [&]( OBMediaState state ) {
             if( state == OBMediaState::OB_MEDIA_END ){
                 is_run = false;
@@ -107,8 +107,8 @@ void orbbec::initialize_playback()
 // Finalize
 void orbbec::finalize()
 {
-    // Stop Playback
-    playback->stop();
+    // Stop Player
+    player->stop();
 
     // Stop Pipeline
     pipeline->stop();
