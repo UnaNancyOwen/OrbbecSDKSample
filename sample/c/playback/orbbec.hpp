@@ -33,6 +33,7 @@ private:
 
     // Player
     std::string bag_file = "../data.bag";
+    std::string serial_number = "";
     ob_playback* player = nullptr;
     std::mutex frame_mutex;
     bool is_run = true;

@@ -230,8 +230,8 @@ inline void orbbec::show_color()
     }
 
     // Show Image
-    const cv::String window_name = ( playback == nullptr ) ? cv::format( "color (orbbec %d)", device_index )
-                                                           : cv::format( "color (orbbec %s)", playback->getDeviceInfo()->serialNumber() );
+    const cv::String window_name = ( player == nullptr ) ? cv::format( "color (orbbec %d)", device_index )
+                                                         : cv::format( "color (orbbec %s)", playback->getDeviceInfo()->serialNumber() );
     cv::imshow( window_name, color );
 }
 
@@ -247,8 +247,8 @@ inline void orbbec::show_depth()
     depth.convertTo( depth, CV_8U, -255.0 / max_range, 255.0 );
 
     // Show Image
-    const cv::String window_name = ( playback == nullptr ) ? cv::format( "depth (orbbec %d)", device_index )
-                                                           : cv::format( "depth (orbbec %s)", playback->getDeviceInfo()->serialNumber() );
+    const cv::String window_name = ( player == nullptr ) ? cv::format( "depth (orbbec %d)", device_index )
+                                                         : cv::format( "depth (orbbec %s)", playback->getDeviceInfo()->serialNumber() );
     cv::imshow( window_name, depth );
 }
 

@@ -126,6 +126,12 @@ void orbbec::initialize_player()
     player = ob_pipeline_get_playback( pipeline, &error );
     CHECK_ERROR( error );
 
+    // Get Device Infomation
+    ob_device_info* device_info = ob_playback_get_device_info( player, &error );
+    CHECK_ERROR( error );
+    serial_number = ob_device_info_serial_number( device_info, &error );
+    CHECK_ERROR( error );
+
     // Set Playback State Callback
     ob_set_playback_state_callback(
         player,
@@ -277,7 +283,7 @@ void orbbec::update()
 // Update Frame
 inline void orbbec::update_frame()
 {
-    if( !bag_file.empty() ){
+    if( player != nullptr ){
         return;
     }
 
@@ -290,7 +296,7 @@ inline void orbbec::update_frame()
 // Update Color
 inline void orbbec::update_color()
 {
-    if( !bag_file.empty() ){
+    if( player != nullptr ){
         return;
     }
 
@@ -306,7 +312,7 @@ inline void orbbec::update_color()
 // Update Depth
 inline void orbbec::update_depth()
 {
-    if( !bag_file.empty() ){
+    if( player != nullptr ) {
         return;
     }
 
@@ -373,7 +379,9 @@ inline void orbbec::show_color()
     }
 
     // Show Image
-    const cv::String window_name = cv::format( "color (orbbec %d)", device_index );
+    
+    const cv::String window_name = ( player == nullptr ) ? cv::format( "color (orbbec %d)", device_index )
+                                                         : cv::format( "color (orbbec %s)", serial_number );
     cv::imshow( window_name, color );
 }
 
@@ -389,7 +397,8 @@ inline void orbbec::show_depth()
     depth.convertTo( depth, CV_8U, -255.0 / max_range, 255.0 );
 
     // Show Image
-    const cv::String window_name = cv::format( "depth (orbbec %d)", device_index );
+    const cv::String window_name = ( player == nullptr ) ? cv::format( "depth (orbbec %d)", device_index )
+                                                         : cv::format( "depth (orbbec %s)", serial_number );
     cv::imshow( window_name, depth );
 }
 
